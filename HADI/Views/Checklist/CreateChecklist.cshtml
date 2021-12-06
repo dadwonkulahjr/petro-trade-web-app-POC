@@ -1,0 +1,74 @@
+﻿@model Checklist
+
+@{
+    ViewBag.title = "Add New Checklist";
+}
+
+
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4" style="margin-top: 30px;">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h3><b>Add New Checklist</b></h3>
+                            </div>
+
+                            <div class="card-body" style="background-color: #e9ecef;">
+                                <form method="post" asp-controller="checklist" asp-action="createChecklist" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="Content">Checker</label>
+                                                        <textarea class="form-control" asp-for="Content" rows="4">
+													
+											        	</textarea>
+                                                        <span asp-validation-for="Content" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--image-->
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div style="text-align: center;">
+                                                        <img id="img-upload">
+                                                        <div id="tem-img">
+                                                            <img src="~/images/logo.png" height="180" width="150" asp-append-version="true">
+                                                        </div>
+                                                        <br><br>
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                        <!-- Btn -->
+                                        <div class="col-md-12" style="text-align:center;">
+                                            <button type="submit" class="btn btn-warning">Create</button>
+                                            <button class="btn btn-danger" asp-controller="checklist" asp-action="allChecklists">Back</button>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <br><br>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

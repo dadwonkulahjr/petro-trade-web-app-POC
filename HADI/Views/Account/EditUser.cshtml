@@ -1,0 +1,131 @@
+﻿@model EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4" style="margin-top: 30px;">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <div class="card">
+                            <div class="card-header bg-success text-white">
+                                <h3>Edit User </h3>
+                            </div>
+
+                            <div class="card-body" style="background-color: #e9ecef;">
+                                <form method="post">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label asp-for="Id">User Id</label>
+                                                        <input type="text" disabled class="form-control" asp-for="Id">
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label asp-for="Email">Email</label>
+                                                        <input type="text" class="form-control" asp-for="Email">
+                                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label asp-for="UserName">User Name</label>
+                                                        <input type="text" class="form-control" asp-for="UserName">
+                                                        <span asp-validation-for="UserName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!--image-->
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="card">
+                                                        <div class="card-header bg-success">
+                                                            <h5 style="color: #fff;">User Role</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @if (Model.Roles.Any())
+                                                            {
+                                                                foreach (var role in Model.Roles)
+                                                                {
+                                                                    <h5 class="card-title">@role</h5>
+                                                                }
+                                                            }
+                                                            else
+                                                            {  
+                                                                <h5 class="card-title">No Role at the moment</h5>
+                                                            }
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <a asp-action="ManageUserRoles" asp-route-userId="@Model.Id" asp-controller="Account"
+                                                               class="btn btn-warning" style="width:auto; margin: 5px;">Manage Roles</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+
+                                                    <div class="card">
+                                                        <div class="card-header bg-success">
+                                                            <h5 style="color: #fff;">User Claims</h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            @if (Model.Claims.Any())
+                                                            {
+                                                                foreach (var claim in Model.Claims)
+                                                                {
+                                                                    <h5 class="card-title">@claim</h5>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <h5 class="card-title">No claim at the moment</h5>
+                                                            }
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <a asp-route-roleId="@Model.Id"
+                                                               class="btn btn-warning" style="width:auto; margin: 5px;">Manage Claims</a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Btn -->
+                                        <div class="col-md-12" style="text-align:center; margin-top: 10px;">
+                                            <button type="submit" class="btn btn-warning" style="width: auto;">Update</button>
+                                            <a class="btn btn-danger" asp-action="allRoles">Back</a>
+                                        </div>
+
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <br><br>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</div>  
