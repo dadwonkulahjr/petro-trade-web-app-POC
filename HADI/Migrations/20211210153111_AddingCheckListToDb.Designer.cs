@@ -4,14 +4,16 @@ using HADI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HADI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211210153111_AddingCheckListToDb")]
+    partial class AddingCheckListToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,38 +49,6 @@ namespace HADI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Checklists");
-                });
-
-            modelBuilder.Entity("HADI.Models.CheckListReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CheckListReports");
-                });
-
-            modelBuilder.Entity("HADI.Models.CheckListReportBridgeTable", b =>
-                {
-                    b.Property<int>("CheckListId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CheckListReportId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CheckListId", "CheckListReportId");
-
-                    b.HasIndex("CheckListReportId");
-
-                    b.ToTable("CheckListReportBridgeTables");
                 });
 
             modelBuilder.Entity("HADI.Models.Employee", b =>
@@ -379,25 +349,6 @@ namespace HADI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("HADI.Models.CheckListReportBridgeTable", b =>
-                {
-                    b.HasOne("HADI.Models.CheckList", "CheckList")
-                        .WithMany("CheckListReportBridgeTables")
-                        .HasForeignKey("CheckListId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("HADI.Models.CheckListReport", "CheckListReport")
-                        .WithMany("CheckListReportBridgeTables")
-                        .HasForeignKey("CheckListReportId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CheckList");
-
-                    b.Navigation("CheckListReport");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -447,16 +398,6 @@ namespace HADI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("HADI.Models.CheckList", b =>
-                {
-                    b.Navigation("CheckListReportBridgeTables");
-                });
-
-            modelBuilder.Entity("HADI.Models.CheckListReport", b =>
-                {
-                    b.Navigation("CheckListReportBridgeTables");
                 });
 #pragma warning restore 612, 618
         }

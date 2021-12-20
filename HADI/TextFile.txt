@@ -1,7 +1,16 @@
-﻿@model CheckListReportViewModel
-@{
-    ViewData["Title"] = "Checklist";
-}
+﻿  @*<div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+            <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+        </div>*@
+</form>
 
 
 <div class="overlay"></div>
@@ -18,7 +27,7 @@
                 <li class="selected"><a href="#0"><div class="image-icon"><img src="~/img/home-icon.png"></div><h6>Welcome</h6></a></li>
                 <li><a href="#0"><div class="image-icon"><img src="~/img/about-icon.png"></div><h6>About Us</h6></a></li>
                 <li><a href="#0"><div class="image-icon"><img src="~/img/featured-icon.png"></div><h6>Featured</h6></a></li>
-                <li><a asp-action="index" asp-controller="electricalreportlist"><div class="image-icon"><img src="~/img/projects-icon.png"></div><h6>Projects</h6></a></li>
+                <li><a asp-action="create" asp-controller="electricalreportlist"><div class="image-icon"><img src="~/img/projects-icon.png"></div><h6>Projects</h6></a></li>
                 <li><a href="#0"><div class="image-icon"><img src="~/img/contact-icon.png"></div><h6>Contact Us</h6></a></li>
             </ul>
         </nav>
@@ -104,7 +113,7 @@
             <div class="cd-half-width third-slide">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-12">
+                        @*<div class="col-md-12 col-sm-12">*@
                             <div class="content third-content" style="height: 600px;">
                                 <form method="post">
                                     <div class="form-group row">
@@ -138,149 +147,156 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2"></label>
-                                        <div class="col-sm-10">
-                                            @for (int i = 0; i < Model.AvailableReports.Count; i++)
-                                            {
-                                                <div class="form-check checkbox-inline">
-                                                    <input asp-for="@Model.AvailableReports[i].IsChecked" type="checkbox" class="form-check-input" />
+                                        <label class="col-form-label col-sm-2">Report</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        @for (int i = 0; i < Model.AvailableReports.Count; i++)
+                                        {
+                                            <input asp-for="@Model.AvailableReports[i].Id" hidden="hidden" />
+                                            <div class="form-check m-1">
+                                                <input asp-for="@Model.AvailableReports[i].IsChecked" type="checkbox" class="form-check-input" />
+                                                @*&nbsp;<i class="far fa-edit"></i>*@
+                                                <h6>
                                                     <label class="form-check-label" asp-for="@Model.AvailableReports[i].IsChecked">
                                                         @Model.AvailableReports[i].Content
                                                     </label>
-                                                </div>
-                                            }
-                                        </div>
+                                                </h6>
+                                            </div>
+                                        }
+
+
                                     </div>
-                                    @*@for (int i = 0; i < Model.AvailableReports.Count; i++)
-        {
-            <div class="form-check">
-                <input asp-for="@Model.AvailableReports[i].IsChecked" type="checkbox" class="form-check-input" />
-                <label class="form-check-label" asp-for="@Model.AvailableReports[i].IsChecked">
-                    @Model.AvailableReports[i].Content
-                </label>
-            </div>
-        }*@
 
                                     <div class="form-group row">
                                         <div class="col-sm-10">
-                                            <button class="btn btn-warning" type="submit">
+                                            <button class="btn btn-warning">
                                                 Submit
                                             </button>
-                                            <a asp-action="Index" class="btn btn-success">Cancel</a>
+                                            <a asp-action="checker" class="btn btn-success">Cancel</a>
                                         </div>
                                     </div>
 
+                                    @*<div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <label class="form-check-label" for="inlineRadio1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <label class="form-check-label" for="inlineRadio2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+            <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+        </div>*@
                                 </form>
-
-
                             </div>
-                        </div>
+                        @*</div>*@
                     </div>
                 </div>
             </div>
         </li>
 
-        <li>
-            <div class="heading">
-                <h1>Our projects</h1>
-                <span>Here you can check our recent projects</span>
-            </div>
-            <div class="cd-half-width fourth-slide">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="content fourth-content">
-                                <div class="row">
-                                    <form action="" method="post">
-
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <input type="text" name="" class="form-control" placeholder="Station">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <input type="text" name="" class="form-control" placeholder="Name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="form-group">
-                                                <input type="text" name="" class="form-control" placeholder="Date">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-8">
-
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        @*<li>
+                <div class="heading">
+                    <h1>Our projects</h1>
+                    <span>Here you can check our recent projects</span>
                 </div>
-            </div>
-        </li>
+                <div class="cd-half-width fourth-slide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="content fourth-content">
+                                    <div class="row">
+                                        <form action="" method="post">
 
-        <li>
-            <div class="heading">
-                <h1>Contact us</h1>
-                <span>You'll be responded within 48 hrs</span>
-            </div>
-            <div class="cd-half-width fivth-slide">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="content fivth-content">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="left-info">
-                                            <p>
-                                                Maecenas imperdiet sagittis lacus, ut consequat velit iaculis id. Praesent eu consequat urna. Morbi justo dolor, ornare sed lorem et, auctor iaculis ligula.
-                                                <br><br>
-                                                <em>5566 Donec mollis libero<br>at metus luctus 10660</em>
-                                            </p>
-                                            <ul class="social-icons">
-                                                <i><a href="#"><i class="fa fa-facebook"></i></a></i>
-                                                <i><a href="#"><i class="fa fa-twitter"></i></a></i>
-                                                <i><a href="#"><i class="fa fa-linkedin"></i></a></i>
-                                                <i><a href="#"><i class="fa fa-rss"></i></a></i>
-                                                <i><a href="#"><i class="fa fa-behance"></i></a></i>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="row">
-                                            <form id="contact" action="" method="post">
-                                                <div class="col-md-6">
-                                                    <fieldset>
-                                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
-                                                    </fieldset>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="" class="form-control" placeholder="Station">
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <fieldset>
-                                                        <input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">
-                                                    </fieldset>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="" class="form-control" placeholder="Name">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <fieldset>
-                                                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message" required=""></textarea>
-                                                    </fieldset>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="" class="form-control" placeholder="Date">
                                                 </div>
-                                                <div class="col-md-12">
-                                                    <fieldset>
-                                                        <button type="submit" id="form-submit" class="btn">Send Message</button>
-                                                    </fieldset>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            </div>
+
+                                            <div class="col-md-8">
+
+                                            </div>
+
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </li>
+            </li>*@
+
+        @*<li>
+                <div class="heading">
+                    <h1>Contact us</h1>
+                    <span>You'll be responded within 48 hrs</span>
+                </div>
+                <div class="cd-half-width fivth-slide">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="content fivth-content">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="left-info">
+                                                <p>
+                                                    Maecenas imperdiet sagittis lacus, ut consequat velit iaculis id. Praesent eu consequat urna. Morbi justo dolor, ornare sed lorem et, auctor iaculis ligula.
+                                                    <br><br>
+                                                    <em>5566 Donec mollis libero<br>at metus luctus 10660</em>
+                                                </p>
+                                                <ul class="social-icons">
+                                                    <i><a href="#"><i class="fa fa-facebook"></i></a></i>
+                                                    <i><a href="#"><i class="fa fa-twitter"></i></a></i>
+                                                    <i><a href="#"><i class="fa fa-linkedin"></i></a></i>
+                                                    <i><a href="#"><i class="fa fa-rss"></i></a></i>
+                                                    <i><a href="#"><i class="fa fa-behance"></i></a></i>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <form id="contact" action="" method="post">
+                                                    <div class="col-md-6">
+                                                        <fieldset>
+                                                            <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required="">
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <fieldset>
+                                                            <input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <fieldset>
+                                                            <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message" required=""></textarea>
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <fieldset>
+                                                            <button type="submit" id="form-submit" class="btn">Send Message</button>
+                                                        </fieldset>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>*@
     </ul> <!-- .cd-hero-slider -->
 </section> <!-- .cd-hero -->

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HADI.ViewModels
 {
-    public class CreateCheckerVIewModel : Checklist 
+    public class CreateCheckerVIewModel 
     {
         public string StationName { get; set; }
         public DateTime Date { get; set; }

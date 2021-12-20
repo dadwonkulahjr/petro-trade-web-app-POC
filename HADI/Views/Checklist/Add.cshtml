@@ -1,0 +1,92 @@
+﻿@model CheckListReportViewModel
+@{
+    if (Model.Id == 0)
+    {
+        ViewData["Title"] = "Add CheckList";
+    }
+    else
+    {
+        ViewData["Title"] = "Edit CheckList";
+    }
+}
+
+
+@if (Model.Id == 0)
+{
+    <h2>
+        Add new record
+    </h2>
+
+}
+else
+{
+    <h2>
+        Update record
+    </h2>
+}
+<hr />
+
+<div class="border shadow" style="padding:30px;">
+    <form method="post">
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2" asp-for="Name"></label>
+            <div class="col-sm-10">
+                <input asp-for="Name" class="form-control" placeholder="Name..." />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2" asp-for="StationName"></label>
+            <div class="col-sm-10">
+                <input asp-for="StationName" class="form-control" placeholder="Station Name..." />
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2" asp-for="Date"></label>
+            <div class="col-sm-10">
+                <input asp-for="Date" type="date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2" asp-for="PhoneNumber"></label>
+            <div class="col-sm-10">
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number..." />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2">Report</label>
+
+            <div class="col-sm-10">
+                @for (int i = 0; i < Model.AvailableReports.Count; i++)
+                {
+                    <input asp-for="@Model.AvailableReports[i].Id" hidden="hidden" />
+                    <div class="form-check m-1">
+                        <input asp-for="@Model.AvailableReports[i].IsChecked" type="checkbox" class="form-check-input" />
+                       z
+                        <h6>
+                            <label class="form-check-label" asp-for="@Model.AvailableReports[i].IsChecked">
+                                @Model.AvailableReports[i].Content
+                            </label>
+                        </h6>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 offset-2">
+                <button class="btn btn-warning" type="submit">
+                    Submit
+                </button>
+                <a asp-action="Index" class="btn btn-success">Cancel</a>
+            </div>
+        </div>
+
+    </form>
+</div>

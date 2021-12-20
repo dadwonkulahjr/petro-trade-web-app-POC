@@ -1,11 +1,8 @@
-﻿using HADI.Models;
+﻿using HADI.Repository.IRepository;
 using HADI.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HADI.Controllers
@@ -42,7 +39,7 @@ namespace HADI.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityRole identityRole = new IdentityRole()
+                IdentityRole identityRole = new()
                 {
                     Name = model.RoleName
                 };

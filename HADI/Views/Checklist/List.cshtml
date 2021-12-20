@@ -1,0 +1,108 @@
+﻿@model List<CheckList>
+@{
+    ViewData["Title"] = "All List";
+}
+
+<h2>
+    All List
+</h2>
+<hr />
+@*<div class="row mb-2 offset-9">
+    <a asp-action="add" class="btn btn-success">
+        Add new record
+    </a>
+</div>*@
+
+@if (Model.Any())
+{
+
+    <div id="layoutSidenav">
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Checklist
+                        </div>
+                        @*<div>
+                            <a style="float:right; margin: 2px; width: auto;" type="submit" class="btn btn-success"
+                               asp-controller="checklist" asp-action="createChecklist">
+                                Add Checker
+                            </a>
+                        </div>*@
+                        <div class="card-body">
+
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Station Name</th>
+                                        <th>Date</th>
+                                        <th>Phone Number</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Model[i].Name
+                                            </td>
+                                            <td>
+                                                @Model[i].StationName
+                                            </td>
+                                            <td>
+                                                @Model[i].Date.ToShortDateString()
+                                            </td>
+                                            <td>
+                                                @Model[i].PhoneNumber
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-success" asp-route-id="@Model[i].Id" asp-action="add">
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger" asp-route-id="@Model[i].Id">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="card-deck">
+        <div class="card mt-1">
+            <div class="card-header bg-warning">
+                <h4 class="card-title">
+                    No record yet to be display.
+                </h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Click on the button below to add new record.
+                </p>
+            </div>
+            <div class="card-footer bg-warning">
+                <a class="btn btn-success btn-block" asp-action="add">
+                    Add
+                </a>
+            </div>
+        </div>
+    </div>
+}

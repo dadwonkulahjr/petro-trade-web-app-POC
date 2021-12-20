@@ -1,19 +1,16 @@
 using HADI.Data;
-using HADI.Models;
+using HADI.Repository;
+using HADI.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace HADI
 {
@@ -33,10 +30,10 @@ namespace HADI
             services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbconnectionString")));
             services.AddControllersWithViews();
             services.AddMvc(option => {
-                var policy = new AuthorizationPolicyBuilder()
-                                 .RequireAuthenticatedUser()
-                                 .Build();
-                option.Filters.Add(new AuthorizeFilter(policy));
+                //var policy = new AuthorizationPolicyBuilder()
+                //                 .RequireAuthenticatedUser()
+                //                 .Build();
+                //option.Filters.Add(new AuthorizeFilter(policy));
             }).AddXmlSerializerFormatters();
             services.AddScoped<IEmployeeRepo, SQlEmployeeRep>();
             services.AddScoped<IStation, SQLStationRepo>();

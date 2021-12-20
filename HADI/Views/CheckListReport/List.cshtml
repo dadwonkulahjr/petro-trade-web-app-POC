@@ -1,0 +1,63 @@
+﻿@model List<CheckListReport>
+@{
+    ViewData["Title"] = "List of Checklist Reports";
+}
+
+<h2>
+    CheckList Report
+</h2>
+<hr />
+<div class="row mb-2 offset-9">
+    <a asp-action="add" class="btn btn-success">
+        Add new record
+    </a>
+</div>
+@if (Model.Any())
+{
+    <table class="table table-bordered shadow">
+        <thead>
+                <tr>
+                    <th>Content</th>
+                    <th>Action</th>
+                </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Model[i].Content
+                    </td>
+                    <td>
+                        <a class="btn-success btn" asp-route-id="@Model[i].Id" asp-action="add">
+                            Edit
+                        </a>
+                        <a class="btn btn-danger" asp-route-id="@Model[i].Id">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="card-deck mt-2">
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h4>No record has been add.</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    Click on the button below to add new record.
+                </p>
+            </div>
+            <div class="card-footer bg-warning">
+                <a class="btn btn-success btn-block text-white" asp-action="add">
+                    Add
+                </a>
+            </div>
+        </div>
+    </div>
+}

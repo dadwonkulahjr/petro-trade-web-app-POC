@@ -1,10 +1,9 @@
 ﻿using HADI.Data;
-using System;
+using HADI.Models;
+using HADI.Repository.IRepository;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HADI.Models
+namespace HADI.Repository
 {
     public class SQlEmployeeRep : IEmployeeRepo
     {

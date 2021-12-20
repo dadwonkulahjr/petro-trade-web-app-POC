@@ -1,9 +1,8 @@
-﻿using System;
+﻿using HADI.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace HADI.Models
+
+namespace HADI.Repository.IRepository
 {
     public interface IStation
     {
